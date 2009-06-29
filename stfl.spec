@@ -17,8 +17,9 @@ Url:		http://www.clifford.at/stfl/
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 BuildRequires:	ncursesw-devel
 BuildRequires:	swig
-BuildRequires:	python, perl, ruby
-
+BuildRequires:	perl, ruby
+%py_requires -d
+ 
 %description
 STFL is a library which implements a curses-based widget set for text
 terminals. The STFL API can be used from C, SPL, Python, Perl and
