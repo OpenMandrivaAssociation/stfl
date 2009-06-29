@@ -11,13 +11,11 @@ Name:		%{name}
 Version:	%{version}
 Release:	%{release}
 Source0:	%{name}-%{version}.tar.gz
-Patch0:		prefix.patch
-Patch1:		python.patch
 License:	GPLv3+
 Group:		Development/Other
 Url:		http://www.clifford.at/stfl/
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
-BuildRequires:	ncurses-devel
+BuildRequires:	ncursesw-devel
 BuildRequires:	swig
 BuildRequires:	python, perl, ruby
 
@@ -141,8 +139,6 @@ This package contains the bindings needed to use STFL with Ruby.
 
 %prep
 %setup -q
-#%patch0 -p0 
-#%patch1 -p0 
 %{__sed} -i 's,$(prefix)/lib,/%{_libdir},g' python/Makefile.snippet
 %{__sed} -i 's,$(prefix)/lib,/%{_libdir},g' ruby/Makefile.snippet
 %{__sed} -i 's,sitedir=$(prefix)/$(libdir)/ruby,sitedir=%{_libdir}/ruby/site_ruby,g' ruby/Makefile.snippet
