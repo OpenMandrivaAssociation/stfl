@@ -175,11 +175,11 @@ make prefix=%{_prefix} libdir=%{_lib} DESTDIR=%{buildroot} install
 
 %files -n python-%{name}
 %defattr(-,root,root)
-%{py_sitedir}/*
+%{py_platsitedir}/*
 
 %files -n perl-%{name}
 %defattr(-,root,root)
-%{_libdir}/perl5/*
+%{_usr}/lib/perl5/*
 
 %files -n ruby-%{name}
 %defattr(-,root,root)
