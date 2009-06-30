@@ -17,7 +17,7 @@ Url:		http://www.clifford.at/stfl/
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 BuildRequires:	ncursesw-devel
 BuildRequires:	swig
-BuildRequires:	perl-devel, ruby
+BuildRequires:	perl-devel, ruby-devel
 %py_requires -d
  
 %description
