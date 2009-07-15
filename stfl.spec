@@ -1,6 +1,6 @@
 %define name	stfl
 %define version 0.21
-%define release %mkrel 2
+%define release %mkrel 3
 %define major	0
 
 %define libname   %mklibname %{name} %{major}
@@ -78,7 +78,6 @@ programs that use STFL.
 %package -n python-%{name}
 Summary:    Structured Terminal Forms Language Python bindings
 Group:	    Development/Python
-Requires:   libncursesw5
 Requires:   python
 
 %description -n python-%{name}
@@ -99,7 +98,6 @@ This package contains the bindings needed to use STFL with Python.
 %package -n perl-%{name}
 Summary:    Structured Terminal Forms Language Perl bindings
 Group:	    Development/Perl
-Requires:   libncursesw5
 Requires:   perl
 
 %description -n perl-%{name}
@@ -120,7 +118,6 @@ This package contains the bindings needed to use STFL with Perl.
 %package -n ruby-%{name}
 Summary:    Structured Terminal Forms Language Ruby bindings
 Group:	    Development/Ruby
-Requires:   libncursesw5
 Requires:   ruby
 
 %description -n ruby-%{name}
