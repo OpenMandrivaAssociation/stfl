@@ -1,6 +1,3 @@
-%define name	stfl
-%define version 0.21
-%define release %mkrel 5
 %define major	0
 # TODO: move to rpm macros
 %define	ruby_sitedir %(%{__ruby} -rrbconfig -e 'print Config::CONFIG["sitedir"]')
@@ -9,15 +6,14 @@
 %define develname %mklibname -d %{name}
 
 Summary:	Structured Terminal Forms Language
-Name:		%{name}
-Version:	%{version}
-Release:	%{release}
+Name:		stfl
+Version:	0.21
+Release:	6
 Source0:	%{name}-%{version}.tar.gz
 Patch0:		stfl-0.21-pass-ldflags-and-ldlibs.patch
 License:	GPLv3+
 Group:		Development/Other
 Url:		http://www.clifford.at/stfl/
-BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 BuildRequires:	ncursesw-devel
 BuildRequires:	swig
 BuildRequires:	perl-devel ruby-devel python-devel
@@ -35,11 +31,11 @@ write so an application programmer does not need to spend ages
 fiddling around with the GUI and can concentrate on the more
 interesting programming tasks.
 
-%package -n %{libname}
-Summary:    Structured Terminal Forms Language library
-Group:	    System/Libraries
+%package -n	%{libname}
+Summary:	Structured Terminal Forms Language library
+Group:		System/Libraries
 
-%description -n %{libname}
+%description -n	%{libname}
 STFL is a library which implements a curses-based widget set for text
 terminals. The STFL API can be used from C, SPL, Python, Perl and
 Ruby. Since the API is only 14 simple function calls big and there are
@@ -55,13 +51,13 @@ interesting programming tasks.
 This package contains the shared library required for running programs
 that use STFL.
 
-%package -n %{develname}
-Summary:    Structured Terminal Forms Language development files
-Group:	    Development/C
-Requires:   %{libname} = %{version}-%{release}
-Provides:   %{name}-devel = %{version}-%{release}
+%package -n	%{develname}
+Summary:	Structured Terminal Forms Language development files
+Group:		Development/C
+Requires:	%{libname} = %{version}-%{release}
+Provides:	%{name}-devel = %{version}-%{release}
 
-%description -n %{develname}
+%description -n	%{develname}
 STFL is a library which implements a curses-based widget set for text
 terminals. The STFL API can be used from C, SPL, Python, Perl and
 Ruby. Since the API is only 14 simple function calls big and there are
@@ -77,12 +73,12 @@ interesting programming tasks.
 This package contains the C headers and other files needed to compile
 programs that use STFL.
 
-%package -n python-%{name}
-Summary:    Structured Terminal Forms Language Python bindings
-Group:	    Development/Python
-Requires:   python
+%package -n	python-%{name}
+Summary:	Structured Terminal Forms Language Python bindings
+Group:		Development/Python
+Requires:	python
 
-%description -n python-%{name}
+%description -n	python-%{name}
 STFL is a library which implements a curses-based widget set for text
 terminals. The STFL API can be used from C, SPL, Python, Perl and
 Ruby. Since the API is only 14 simple function calls big and there are
@@ -97,12 +93,12 @@ interesting programming tasks.
 
 This package contains the bindings needed to use STFL with Python.
 
-%package -n perl-%{name}
-Summary:    Structured Terminal Forms Language Perl bindings
-Group:	    Development/Perl
-Requires:   perl
+%package -n	perl-%{name}
+Summary:	Structured Terminal Forms Language Perl bindings
+Group:		Development/Perl
+Requires:	perl
 
-%description -n perl-%{name}
+%description -n	perl-%{name}
 STFL is a library which implements a curses-based widget set for text
 terminals. The STFL API can be used from C, SPL, Python, Perl and
 Ruby. Since the API is only 14 simple function calls big and there are
@@ -117,12 +113,12 @@ interesting programming tasks.
 
 This package contains the bindings needed to use STFL with Perl.
 
-%package -n ruby-%{name}
-Summary:    Structured Terminal Forms Language Ruby bindings
-Group:	    Development/Ruby
-Requires:   ruby
+%package -n	ruby-%{name}
+Summary:	Structured Terminal Forms Language Ruby bindings
+Group:		Development/Ruby
+Requires:	ruby
 
-%description -n ruby-%{name}
+%description -n	ruby-%{name}
 STFL is a library which implements a curses-based widget set for text
 terminals. The STFL API can be used from C, SPL, Python, Perl and
 Ruby. Since the API is only 14 simple function calls big and there are
@@ -154,19 +150,12 @@ This package contains the bindings needed to use STFL with Ruby.
 CFLAGS="%{optflags}" LDFLAGS="%{ldflags}" %make
 
 %install
-%__rm -rf %{buildroot}
 make prefix=%{_prefix} libdir=%{_lib} DESTDIR=%{buildroot} install
-%__rm -rf %{buildroot}%{_libdir}/perl5/5.10.0
-
-%clean
-%__rm -rf %{buildroot}
 
 %files -n %{libname}
-%defattr(-,root,root)
 %{_libdir}/*.so.*
 
 %files -n %{develname}
-%defattr(-,root,root)
 %doc COPYING README 
 %{_includedir}/*.h
 %{_libdir}/*.a
@@ -174,13 +163,10 @@ make prefix=%{_prefix} libdir=%{_lib} DESTDIR=%{buildroot} install
 %{_libdir}/pkgconfig/*.pc
 
 %files -n python-%{name}
-%defattr(-,root,root)
 %{py_platsitedir}/*
 
 %files -n perl-%{name}
-%defattr(-,root,root)
 %{_usr}/lib/perl5/*
 
 %files -n ruby-%{name}
-%defattr(-,root,root)
 %{ruby_sitearchdir}/stfl.so
