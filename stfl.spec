@@ -147,7 +147,7 @@ This package contains the bindings needed to use STFL with Ruby.
 CFLAGS="%{optflags}" LDFLAGS="%{ldflags}" %make
 
 %install
-make prefix=%{_prefix} libdir=%{_lib} DESTDIR=%{buildroot} install
+%makeinstall_std prefix=%{_prefix} libdir=%{_lib}
 
 %files -n %{libname}
 %{_libdir}/libstfl.so.%{major}*
