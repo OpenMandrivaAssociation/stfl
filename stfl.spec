@@ -96,7 +96,6 @@ This package contains the bindings needed to use STFL with Python.
 %package -n	perl-%{name}
 Summary:	Structured Terminal Forms Language Perl bindings
 Group:		Development/Perl
-Requires:	perl
 
 %description -n	perl-%{name}
 STFL is a library which implements a curses-based widget set for text
