@@ -153,20 +153,27 @@ CFLAGS="%{optflags}" LDFLAGS="%{ldflags}" %make
 make prefix=%{_prefix} libdir=%{_lib} DESTDIR=%{buildroot} install
 
 %files -n %{libname}
-%{_libdir}/*.so.*
+%{_libdir}/libstfl.so.%{major}*
 
 %files -n %{develname}
 %doc COPYING README 
-%{_includedir}/*.h
-%{_libdir}/*.a
-%{_libdir}/*.so
-%{_libdir}/pkgconfig/*.pc
+%{_includedir}/stfl.h
+%{_libdir}/libstfl.a
+%{_libdir}/libstfl.so
+%{_libdir}/pkgconfig/stfl.pc
 
 %files -n python-%{name}
-%{py_platsitedir}/*
+# XXX: python extension should likely not be located under this directory..
+#%{py_dyndir}/_stfl.so
+%dir %{py_platsitedir}/lib-dynload
+%{py_platsitedir}/lib-dynload/_stfl.so
+%{py_platsitedir}/stfl.py*
 
 %files -n perl-%{name}
-%{_usr}/lib/perl5/*
+%{perl_vendorarch}/example.pl
+%{perl_vendorarch}/stfl.pm
+%dir %{perl_vendorarch}/auto/stfl
+%{perl_vendorarch}/auto/stfl/stfl.so
 
 %files -n ruby-%{name}
 %{ruby_sitearchdir}/stfl.so
