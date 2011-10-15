@@ -13,6 +13,7 @@ Name:		%{name}
 Version:	%{version}
 Release:	%{release}
 Source0:	%{name}-%{version}.tar.gz
+Patch0:		stfl-0.21-pass-ldflags-and-ldlibs.patch
 License:	GPLv3+
 Group:		Development/Other
 Url:		http://www.clifford.at/stfl/
@@ -138,6 +139,7 @@ This package contains the bindings needed to use STFL with Ruby.
 
 %prep
 %setup -q
+%patch0 -p1 -b .ldflags~
 %{__sed} -i 's,$(prefix)/lib,/%{_libdir},g' python/Makefile.snippet
 %{__sed} -i 's,$(prefix)/lib,/%{_libdir},g' ruby/Makefile.snippet
 %{__sed} -i 's,$(prefix)/$(libdir)/ruby,%{ruby_sitedir},g' ruby/Makefile.snippet
@@ -149,7 +151,7 @@ This package contains the bindings needed to use STFL with Ruby.
 %{__sed} -i 's,stfl.pc \$(DESTDIR)\$(prefix)/lib/pkgconfig/,stfl.pc \$(DESTDIR)%{_libdir}\/pkgconfig/,g' Makefile
 
 %build
-CFLAGS="%{optflags}" %make
+CFLAGS="%{optflags}" LDFLAGS="%{ldflags}" %make
 
 %install
 %__rm -rf %{buildroot}
