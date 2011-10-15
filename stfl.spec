@@ -2,6 +2,8 @@
 %define version 0.21
 %define release %mkrel 5
 %define major	0
+# TODO: move to rpm macros
+%define	ruby_sitedir %(%{__ruby} -rrbconfig -e 'print Config::CONFIG["sitedir"]')
 
 %define libname   %mklibname %{name} %{major}
 %define develname %mklibname -d %{name}
@@ -138,7 +140,7 @@ This package contains the bindings needed to use STFL with Ruby.
 %setup -q
 %{__sed} -i 's,$(prefix)/lib,/%{_libdir},g' python/Makefile.snippet
 %{__sed} -i 's,$(prefix)/lib,/%{_libdir},g' ruby/Makefile.snippet
-%{__sed} -i 's,sitedir=$(prefix)/$(libdir)/ruby,sitedir=%{_libdir}/ruby/site_ruby,g' ruby/Makefile.snippet
+%{__sed} -i 's,$(prefix)/$(libdir)/ruby,%{ruby_sitedir},g' ruby/Makefile.snippet
 %{__sed} -i 's,libdir=lib,libdir=%{_libdir},g' Makefile 
 %{__sed} -i "s,cd python && python -c 'import stfl',python -mcompileall .," python/Makefile.snippet
 %{__sed} -i 's,export prefix ?= /usr/local,export prefix ?= %{_prefix},g' Makefile.cfg
@@ -147,7 +149,7 @@ This package contains the bindings needed to use STFL with Ruby.
 %{__sed} -i 's,stfl.pc \$(DESTDIR)\$(prefix)/lib/pkgconfig/,stfl.pc \$(DESTDIR)%{_libdir}\/pkgconfig/,g' Makefile
 
 %build
-%make
+CFLAGS="%{optflags}" %make
 
 %install
 %__rm -rf %{buildroot}
@@ -179,4 +181,4 @@ make prefix=%{_prefix} libdir=%{_lib} DESTDIR=%{buildroot} install
 
 %files -n ruby-%{name}
 %defattr(-,root,root)
-%{_libdir}/ruby/*
+%{ruby_sitearchdir}/stfl.so
