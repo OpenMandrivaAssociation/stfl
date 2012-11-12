@@ -1,0 +1,11 @@
+--- stfl-0.21/Makefile.ldflags~	2011-10-15 15:10:42.495946837 +0200
++++ stfl-0.21/Makefile	2011-10-15 15:11:29.077970055 +0200
+@@ -39,7 +39,7 @@ libstfl.a: public.o base.o parser.o dump
+ 
+ libstfl.so.$(VERSION): public.o base.o parser.o dump.o style.o binding.o iconv.o \
+                        $(patsubst %.c,%.o,$(wildcard widgets/*.c))
+-	$(CC) -shared -Wl,-soname,$(SONAME) -o $@ $^
++	$(CC) $(LDFLAGS) -shared -Wl,-soname,$(SONAME) -o $@ $^ $(LDLIBS)
+ 
+ clean:
+ 	rm -f libstfl.a example core core.* *.o Makefile.deps
