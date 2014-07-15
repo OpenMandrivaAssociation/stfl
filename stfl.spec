@@ -1,6 +1,4 @@
 %define major	0
-# TODO: move to rpm macros
-%define	ruby_sitedir %(%{__ruby} -rrbconfig -e 'print Config::CONFIG["sitedir"]')
 
 %define libname   %mklibname %{name} %{major}
 %define develname %mklibname -d %{name}
@@ -8,7 +6,7 @@
 Summary:	Structured Terminal Forms Language
 Name:		stfl
 Version:	0.21
-Release:	8
+Release:	10
 Source0:	%{name}-%{version}.tar.gz
 Patch0:		stfl-0.21-pass-ldflags-and-ldlibs.patch
 License:	GPLv3+
@@ -174,45 +172,3 @@ CFLAGS="%{optflags}" LDFLAGS="%{ldflags}" %make
 
 %files -n ruby-%{name}
 %{ruby_sitearchdir}/stfl.so
-
-
-%changelog
-* Wed Feb 15 2012 Per Øyvind Karlsen <peroyvind@mandriva.org> 0.21-8
-+ Revision: 774161
-- mass rebuild of ruby packages against ruby 1.9.1
-
-* Wed Jan 25 2012 Per Øyvind Karlsen <peroyvind@mandriva.org> 0.21-7
-+ Revision: 768358
-- mass rebuild of perl extensions against perl 5.14.2
-
-* Sat Oct 15 2011 Per Øyvind Karlsen <peroyvind@mandriva.org> 0.21-6
-+ Revision: 704801
-- use %%makeinstall_std macro
-- drop redundant python & ruby dependencies as well
-- drop redundant 'perl' dependency
-- provide more accurate and proper paths for %%files..
-- clean out legacy rpm junk and apply some cosmetics
-- link with %%{ldflags} and be sure to link against $LDLIBS (P0)
-- compile with %%{optflags}
-- replace silly %%py_requires -d with simple & equivalent 'python-devel' build dep
-
-* Mon Nov 22 2010 Funda Wang <fwang@mandriva.org> 0.21-5mdv2011.0
-+ Revision: 599634
-- rebuild for py2.7
-
-* Sat Jul 24 2010 Jérôme Quelin <jquelin@mandriva.org> 0.21-4mdv2011.0
-+ Revision: 558113
-- perl 5.12 rebuild
-
-* Wed Jul 15 2009 Funda Wang <fwang@mandriva.org> 0.21-3mdv2010.0
-+ Revision: 396355
-- fix requires
-
-  + Lev Givon <lev@mandriva.org>
-    - Force rebuild.
-
-* Tue Jun 30 2009 Lev Givon <lev@mandriva.org> 0.21-1mdv2010.0
-+ Revision: 390805
-- imported package stfl
-
-
