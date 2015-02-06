@@ -6,7 +6,7 @@
 Summary:	Structured Terminal Forms Language
 Name:		stfl
 Version:	0.21
-Release:	10
+Release:	11
 Source0:	%{name}-%{version}.tar.gz
 Patch0:		stfl-0.21-pass-ldflags-and-ldlibs.patch
 License:	GPLv3+
