@@ -11,7 +11,7 @@ Source0:	%{name}-%{version}.tar.gz
 Patch0:		stfl-0.21-pass-ldflags-and-ldlibs.patch
 License:	GPLv3+
 Group:		Development/Other
-Url:		http://www.clifford.at/stfl/
+Url:		https://www.clifford.at/stfl/
 BuildRequires:	ncursesw-devel
 BuildRequires:	swig
 BuildRequires:	perl-devel ruby-devel python-devel
